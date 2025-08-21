@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Viraj Constructions</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+     header {
+      background: #004080;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+     header .logo {
+      font-weight: 700;
+      font-size: 40px;
+      letter-spacing: 2px;
+       margin-right: 450px;
+    }
+    header img { height: 60px; border-radius: 8px; }
+    header h1 { color: lab(95.44% -0.15 -0.61);   font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 2px;
+       padding: 20px 40px;
+        align-items: center;
+       margin-left: 1px; margin: 0;
+       }
+    .project-list { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .project { padding: 15px; border: 1px solid #ccc; border-radius: 10px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .project img { width: 100%; height: auto; margin-top: 10px; border-radius: 8px; }
+    button.delete { margin-top: 10px; background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+    button.delete:hover { background: darkred; }
+    form { margin-top: 20px; }
+    input, button { padding: 10px; margin: 5px; }
+    input[type="text"] { width: 250px; }
+    #adminPanel { display: none; margin-top: 20px; padding: 15px; border: 2px solid #004080; border-radius: 8px; background: #eef5ff; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="images/logo1.jpg" alt="Viraj Constructions Logo">
+    <h1>Viraj Constructions – Admin Page</h1>
+  </header>
+
+   <!-- Admin Login -->
+  <div id="loginBox">
+    <h3>Admin Login</h3>
+    <input type="password" id="adminPass" placeholder="Enter Admin Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- Admin Panel -->
+  <div id="adminPanel">
+    <h3>Admin Panel</h3>
+    <form id="projectForm">
+      <input type="text" id="title" placeholder="Project Title" required>
+      <input type="text" id="desc" placeholder="Project Description" required>
+      <input type="file" id="image" accept="image/*" required>
+      <button type="submit">Add Project</button>
+    </form>
+  </div>
+
+ 
+
+  <!-- Projects Section -->
+    <h3>My Projects</h3>
+  <div class="project-list" id="projectList"></div>
+
+ 
+
+  
+
+  <script>
+    const list = document.getElementById('projectList');
+    const projectForm = document.getElementById('projectForm');
+    const adminPanel = document.getElementById('adminPanel');
+    const loginBox = document.getElementById('loginBox');
+
+    // Predefined projects (your static section)
+    let defaultProjects = [
+      {
+        title: "Residential Construction",
+        desc: "Building comfortable and beautiful homes tailored to your lifestyle. G+1 2BHK House",
+        image: "images/2bhkG+1.JPG"
+      },
+      {
+        title: "Residential Construction",
+        desc: "Building comfortable and beautiful homes tailored to your lifestyle. G+2 3BHK House",
+        image: "images/2bhkG+1.JPG"
+      },
+      {
+        title: "Residential Construction",
+        desc: "Building comfortable and beautiful homes tailored to your lifestyle. G+2 3BHK House",
+        image: "logo/2bhkG+1.JPG"
+      }
+    ];
+
+    // Load projects from LocalStorage or fallback to default
+    let projects = JSON.parse(localStorage.getItem('projects')) || defaultProjects;
+    let isAdmin = false;
+    renderProjects();
+
+    // Admin Login
+    function login() {
+      const pass = document.getElementById('adminPass').value;
+      if(pass === "vivek@2002"){  // Change password
+        isAdmin = true;
+        adminPanel.style.display = "block";
+        loginBox.style.display = "none";
+        renderProjects(); // refresh with delete buttons
+      } else {
+        alert("Wrong Password!");
+      }
+    }
+
+    // Add Project
+    projectForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('desc').value;
+      const file = document.getElementById('image').files[0];
+
+      if(file){
+        const reader = new FileReader();
+        reader.onload = function(event){
+          const image = event.target.result;
+          projects.push({ title, desc, image });
+          localStorage.setItem('projects', JSON.stringify(projects));
+          renderProjects();
+          projectForm.reset();
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Render Projects
+    function renderProjects() {
+      list.innerHTML = "";
+      projects.forEach((p, index) => {
+        const div = document.createElement('div');
+        div.classList.add('project');
+        div.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p>`;
+        if(p.image){
+          div.innerHTML += `<img src="${p.image}" alt="${p.title}">`;
+        }
+        // Delete button visible only to admin
+        if(isAdmin){
+          div.innerHTML += `<br><button class="delete" onclick="deleteProject(${index})">Delete</button>`;
+        }
+        list.appendChild(div);
+      });
+    }
+
+    // Delete Project
+    function deleteProject(index) {
+      projects.splice(index, 1);
+      localStorage.setItem('projects', JSON.stringify(projects));
+      renderProjects();
+    }
+  </script>
+</body>
+</html>

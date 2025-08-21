@@ -281,34 +281,35 @@ With expertise in designing and executing durable structures, our team ensures t
           <p>Ensuring on-time delivery and cost-effective project execution.</p>
         </div>
       </div>
+    
     </section>
-    <section id="Projects">
-      <h2>Our Projects</h2>
-      <div class="services-grid1">
-        <div class="service-card">
-          <h3>Residential Construction</h3>
-          <p>Building comfortable and beautiful homes tailored to your lifestyle. G+1 2BHK House</p>
-          <div class="image-container1">
-             <img src="images\2bhkG+1.JPG" alt="Sample Image">
-          </div>
-        </div>
-        <div class="service-card">
-          <h3>Residential Construction</h3>
-          <p>Building comfortable and beautiful homes tailored to your lifestyle. G+2 3BHK House</p>
-          <div class="image-container1">
-             <img src="images\2bhkG+1.JPG" alt="Sample Image">
-          </div>
-        </div>
-        <div class="service-card">
-          <h3>Residential Construction</h3>
-          <p>Building comfortable and beautiful homes tailored to your lifestyle. G+2 3BHK House</p>
-          <div class="image-container1">
-             <img src="images\2bhkG+1.JPG" alt="Sample Image">
-          </div>
-        </div>
-        
-      </div>
-    </section>
+   <section id="Projects">
+  <h2>Our Projects</h2>
+  <div class="services-grid1" id="projectList"></div>
+</section>
+
+<script>
+  const list = document.getElementById('projectList');
+
+  // Load projects from LocalStorage
+  let projects = JSON.parse(localStorage.getItem('projects')) || [];
+
+  function renderProjects() {
+    list.innerHTML = "";
+    projects.forEach((p) => {
+      const div = document.createElement('div');
+      div.classList.add('service-card');
+      div.innerHTML = `
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        ${p.image ? `<img src="${p.image}" alt="${p.title}" style="width:100%; border-radius:8px;">` : ""}
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  renderProjects();
+</script>
 
     <section id="contact">
       <h2>Contact Us</h2>
