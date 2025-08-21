@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viraj Constructions</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9fafb;
+      color: #222;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    header .logo {
+      font-weight: 700;
+      font-size: 40px;
+      letter-spacing: 2px;
+       margin-right: 450px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ff9800;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 64, 128, 0.65);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      letter-spacing: 3px;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    h2 {
+      color: #004080;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #ff9800;
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      padding: 24px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(255, 152, 0, 0.3);
+    }
+    .service-card h3 {
+      margin-top: 0;
+      color: #004080;
+      font-weight: 700;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+     .services-grid1 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+    }
+    .contact-form {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form label {
+      display: block;
+      margin-top: 18px;
+      font-weight: 600;
+      color: #004080;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      font-size: 1rem;
+      padding: 12px 15px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #ff9800;
+      outline: none;
+    }
+    .contact-form button {
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      margin-top: 24px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .contact-form button:hover {
+      background: #e68900;
+    }
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px;
+      background: #004080;
+      color: white;
+      letter-spacing: 1.5px;
+    }
+     .logo {
+      text-align: center;
+      font-size: 18px;
+      padding: 10px;
+      background: #004080;
+      color: white;
+      letter-spacing: 1.5px;
+       margin-left: 0px;
+    }
+    .image-container {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            text-align: center;
+            padding: 1px;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .image-container1 {
+            width: 400px;
+            height: 300px;
+            border: 2px solid black;
+            text-align: center;
+            padding: 1px;
+        }
+        .image-container1 img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      nav a {
+        margin-left: 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="image-container">
+        <img src="logo\logo1.JPG" alt="Sample Image">
+    </div>
+    <div class="logo">Viraj Constructions</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#services">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/917767974748" 
+   target="_blank" 
+   style="position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 12px 16px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+   💬 Message Us on WhatsApp
+</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Building Your Dreams Into Reality</h1>
+      <p>Reliable, innovative, and quality construction services.</p>
+    </div>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>At Viraj Constructions, we are committed to turning visions into reality with strength, precision, and reliability. Founded on the principles of quality and trust, we specialize in delivering comprehensive construction services with a strong focus on structural engineering.
+
+With expertise in designing and executing durable structures, our team ensures that every project meets the highest standards of safety, functionality, and aesthetics. From residential homes to commercial buildings, we provide end-to-end solutions that include planning, structural design, construction, renovation, and project management.</p>
+    </section>
+
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Residential Construction</h3>
+          <p>Building comfortable and beautiful homes tailored to your lifestyle.</p>
+        </div>
+        <div class="service-card">
+          <h3>Commercial Buildings</h3>
+          <p>Constructing efficient and modern office and retail spaces.</p>
+        </div>
+        <div class="service-card">
+          <h3>Renovations & Remodeling</h3>
+          <p>Transforming your existing spaces to meet your evolving needs.</p>
+        </div>
+        <div class="service-card">
+          <h3>Project Management</h3>
+          <p>Ensuring on-time delivery and cost-effective project execution.</p>
+        </div>
+      </div>
+    </section>
+    <section id="Projects">
+      <h2>Our Projects</h2>
+      <div class="services-grid1">
+        <div class="service-card">
+          <h3>Residential Construction</h3>
+          <p>Building comfortable and beautiful homes tailored to your lifestyle. G+1 2BHK House</p>
+          <div class="image-container1">
+             <img src="logo\2bhkG+1.JPG" alt="Sample Image">
+          </div>
+        </div>
+        <div class="service-card">
+          <h3>Residential Construction</h3>
+          <p>Building comfortable and beautiful homes tailored to your lifestyle. G+2 3BHK House</p>
+          <div class="image-container1">
+             <img src="logo\2bhkG+1.JPG" alt="Sample Image">
+          </div>
+        </div>
+        <div class="service-card">
+          <h3>Residential Construction</h3>
+          <p>Building comfortable and beautiful homes tailored to your lifestyle. G+2 3BHK House</p>
+          <div class="image-container1">
+             <img src="logo\2bhkG+1.JPG" alt="Sample Image">
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Viraj Constructions. All rights reserved.
+  </footer>
+</body>
+</html>
