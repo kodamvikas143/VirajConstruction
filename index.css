@@ -42,7 +42,7 @@ header .logo {
   font-weight: 700;
   font-size: 28px;
   letter-spacing: 2px;
-  margin-right: 0;
+  margin-right: 40px;
 }
 
 nav {
@@ -205,10 +205,10 @@ h2 {
  {
   width: 100%;
   max-width: 80px;
-  border: 2px solid black;
   text-align: center;
   padding: 2px;
   margin: 0 auto;
+  
 }
 .image-container1 {
   width: 100%;
