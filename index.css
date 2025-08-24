@@ -273,31 +273,34 @@ footer {
     font-size: 1.2rem;
   }
    .image-scroll-container {
-    display: flex;
-    overflow-x: hidden; /* hide native scrollbars */
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    width: 380px;
-    border-radius: 12px;
-     text-align: center;
-  /* width: 100%;
-  max-width: 400px;
-  border: 2px solid rgb(255, 255, 255);
+  display: flex;             /* make container a flex row */
+  overflow-x: auto;          /* enable horizontal scroll */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 12px;
   text-align: center;
-  padding: 2px;
-  margin: 0 auto; */
-  }
-  .image-scroll-container img {
-    flex-shrink: 0;
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    scroll-snap-align: center;
-    user-select: none;
-    -webkit-user-drag: none;
-  /* max-width: 100%;
-  height: auto; */
-  }
+  margin: 0 auto;
+  -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
+  scrollbar-width: none;     /* hide scrollbar for Firefox */
+}
+
+.image-scroll-container::-webkit-scrollbar {
+  display: none;             /* hide scrollbar for Chrome, Safari, Opera */
+}
+
+.image-scroll-container img {
+  flex-shrink: 0;            /* prevent images from shrinking */
+  width: 100%;               /* image takes full container width */
+  max-width: 380px;          /* max width to keep consistent */
+  height: auto;
+  object-fit: cover;
+  scroll-snap-align: center;
+  user-select: none;
+  -webkit-user-drag: none;
+  border-radius: 12px;
+}
   .dots {
     text-align: center;
     margin-top: 1px;
