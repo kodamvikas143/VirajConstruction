@@ -1,10 +1,12 @@
 const carousel = document.getElementById('carousel');
   const dots = document.querySelectorAll('.dot');
   const imageWidth = 320;
-  let isDown = false;
-  let startX;
-  let scrollLeft;
 
+  let isDown = false,
+      startX,
+      scrollLeft;
+
+  // Scroll event to update dots
   carousel.addEventListener('scroll', () => {
     const index = Math.round(carousel.scrollLeft / imageWidth);
     dots.forEach((dot, i) => {
@@ -12,17 +14,20 @@ const carousel = document.getElementById('carousel');
     });
   });
 
-  // Optional: add swipe dragging behavior
+  // Mouse drag features (optional for desktop)
   carousel.addEventListener('mousedown', (e) => {
     isDown = true;
     startX = e.pageX - carousel.offsetLeft;
     scrollLeft = carousel.scrollLeft;
+    carousel.classList.add('active');
   });
   carousel.addEventListener('mouseleave', () => {
     isDown = false;
+    carousel.classList.remove('active');
   });
   carousel.addEventListener('mouseup', () => {
     isDown = false;
+    carousel.classList.remove('active');
   });
   carousel.addEventListener('mousemove', (e) => {
     if (!isDown) return;
@@ -32,26 +37,35 @@ const carousel = document.getElementById('carousel');
     carousel.scrollLeft = scrollLeft + walk;
   });
 
-  // For touch devices
-  let touchStartX = 0;
-  let touchEndX = 0;
+  // Touch swipe support with improved handling
+  let touchStartX = 0,
+      touchEndX = 0,
+      isSwiping = false;
 
   carousel.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-  carousel.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleGesture();
-  });
+    touchStartX = e.touches[0].clientX;
+    isSwiping = false;
+  }, {passive: true});
 
-  function handleGesture() {
+  carousel.addEventListener('touchmove', (e) => {
+    const currentX = e.touches[0].clientX;
+    const diffX = Math.abs(currentX - touchStartX);
+    if (diffX > 10) { // Detect swipe after ~10px movement
+      isSwiping = true;
+    }
+  }, {passive: true});
+
+  carousel.addEventListener('touchend', (e) => {
+    if (!isSwiping) return; // Do nothing if no swipe
+    
+    touchEndX = e.changedTouches[0].clientX;
     const currentScroll = carousel.scrollLeft;
+
     if (touchEndX < touchStartX) {
       // Swipe left (next)
-      carousel.scrollTo({left: currentScroll + imageWidth, behavior: 'smooth'});
-    }
-    if (touchEndX > touchStartX) {
+      carousel.scrollTo({ left: currentScroll + imageWidth, behavior: 'smooth' });
+    } else if (touchEndX > touchStartX) {
       // Swipe right (prev)
-      carousel.scrollTo({left: currentScroll - imageWidth, behavior: 'smooth'});
+      carousel.scrollTo({ left: currentScroll - imageWidth, behavior: 'smooth' });
     }
-  }
+  }, {passive: true});
