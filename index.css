@@ -274,7 +274,7 @@ footer {
   }
    .image-scroll-container {
   display: flex;             /* make container a flex row */
-  overflow-x: auto;          /* enable horizontal scroll */
+  overflow-x: scroll;          /* enable horizontal scroll */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   width: 100%;
