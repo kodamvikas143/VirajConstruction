@@ -273,33 +273,24 @@ footer {
     font-size: 1.2rem;
   }
    .image-scroll-container {
-  display: flex;             /* make container a flex row */
-  overflow-x: scroll;          /* enable horizontal scroll */
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  max-width: 380px;
-  border-radius: 12px;
-  text-align: center;
-  margin: 0 auto;
-  -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
-  scrollbar-width: none;     /* hide scrollbar for Firefox */
-}
-
-.image-scroll-container::-webkit-scrollbar {
-  display: none;             /* hide scrollbar for Chrome, Safari, Opera */
+  display: flex;            /* Arrange images side by side */
+  overflow-x: auto;         /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-snap-type: x mandatory;     /* Snap to images */
+  width: 100%;              /* Full width container */
+  max-width: 400px;         /* Optional max width */
 }
 
 .image-scroll-container img {
-  flex-shrink: 0;            /* prevent images from shrinking */
-  width: 100%;               /* image takes full container width */
-  max-width: 380px;          /* max width to keep consistent */
+  flex-shrink: 0;           /* Prevent images from shrinking */
+  width: 100%;              /* Images fill container width */
+  max-width: 400px;         /* Match container max width */
   height: auto;
-  object-fit: cover;
-  scroll-snap-align: center;
+  scroll-snap-align: start; /* Snap alignment */
+  display: block;           /* Remove extra bottom space */
   user-select: none;
   -webkit-user-drag: none;
-  border-radius: 12px;
+  border-radius: 8px;       /* Optional styling */
 }
   .dots {
     text-align: center;
