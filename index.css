@@ -12,15 +12,7 @@ body {
   background: #f9fafb;
   color: #222;
   line-height: 1.6;
-}
-
-/* Mobile-only wrapper */
-.mobile-only {
-  display: block;
-}
-
-.desktop-message {
-  display: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Header */
@@ -38,29 +30,39 @@ header {
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
+header .image-container {
+  max-width: 80px;
+}
+header .image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
 header .logo {
   font-weight: 700;
   font-size: 28px;
   letter-spacing: 2px;
-  
- 
+  margin-left: 8px;
 }
 
-nav {
+nav ul {
   display: flex;
-  flex-wrap: wrap;
+  list-style: none;
   margin-top: 10px;
 }
 
-nav a {
+nav ul li {
+  margin-right: 15px;
+}
+
+nav ul li a {
   color: white;
   text-decoration: none;
-  margin-right: 15px;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
-nav a:hover {
+nav ul li a:hover {
   color: #ff9800;
 }
 
@@ -101,7 +103,7 @@ nav a:hover {
   font-size: 1rem;
 }
 
-/* Main & Sections */
+/* Main and Sections */
 main {
   max-width: 95%;
   margin: 20px auto;
@@ -118,12 +120,11 @@ h2 {
 }
 
 /* Grids */
-.services-grid,
-.services-grid1 {
+.services-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
-  display: block !important;
+  margin-bottom: 30px;
 }
 
 .service-card {
@@ -133,7 +134,6 @@ h2 {
   padding: 20px;
   transition: transform 0.3s ease;
   cursor: pointer;
-  
 }
 
 .service-card:hover {
@@ -152,84 +152,91 @@ h2 {
   color: #555;
 }
 
-/* Contact Form */
-.contact-form {
-  background: white;
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  color: #fff;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.contact-form label {
-  display: block;
-  margin-top: 12px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: #004080;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px 12px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  resize: vertical;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #ff9800;
-  outline: none;
-}
-
-.contact-form button {
-  background: #ff9800;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 6px;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.contact-form button:hover {
-  background: #e68900;
-}
-
-/* Images */
-.image-container
- {
-  width: 100%;
-  max-width: 100px;
+  transition: all 0.3s ease;
+  user-select: none;
   text-align: center;
-  padding: 2px;
-  margin: 0 auto;
-  
 }
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn.email { background:#2563eb; }      /* Blue */
+.btn.instagram { background:#f10ac3; } /* Pink */
+.btn.whatsapp { background:#08e325; }  /* Green */
+
+/* Image containers */
 .image-container1 {
   width: 100%;
   max-width: 400px;
   border: 2px solid rgb(255, 255, 255);
   text-align: center;
   padding: 2px;
-  margin: 0 auto;
+  margin: 20px auto;
+  background: white;
+  border-radius: 8px;
 }
 
-.image-container img
- {
-  max-width: 100%;
-  height: auto;
+/* Carousel container */
+.image-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 10px;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  width: 90vw;
+  max-width: 400px;
+  border-radius: 8px;
 }
-.image-container1 img {
-  max-width: 100%;
+
+.image-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.image-scroll-container img {
+  flex-shrink: 0;
+  width: 80vw;
+  max-width: 380px;
   height: auto;
+  border-radius: 8px;
+  scroll-snap-align: start;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Dots navigation */
+.dots {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #004080;
 }
 
 /* Footer */
@@ -242,80 +249,19 @@ footer {
   letter-spacing: 1px;
 }
 
-.logo {
-  text-align: center;
-  font-size: 18px;
-  padding: 10px;
-  background: #004080;
-  color: white;
-  letter-spacing: 1px;
+/* Responsive */
+@media(min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* Desktop Message */
-@media (max-width: 300px) {
-  .mobile-only {
-    display: none;
+@media(min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  .desktop-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    background: #004080;
-    color: white;
+  .hero {
+    height: 60vh;
   }
-  .desktop-message h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  .desktop-message p {
-    font-size: 1.2rem;
-  }
-   .image-scroll-container {
-  display: flex !important;              /* Flex layout for horizontal alignment */
-  overflow-x: auto !important;           /* Horizontal scroll enabled */
-  scroll-snap-type: x mandatory !important; /* Snap scroll on horizontal axis */
-  -webkit-overflow-scrolling: touch !important; /* Momentum scrolling on iOS */
-  width: 100% !important;                 /* Full width */
-  max-width: 400px !important;            /* Max width for container */
-  margin: 0 auto !important;              /* Center horizontally */
-  gap: 10px !important;                   /* Space between images */
-  scrollbar-width: none;                  /* Hide scrollbar - Firefox */
 }
 
-.image-scroll-container::-webkit-scrollbar {
-  display: none;                         /* Hide scrollbar - Chrome/Safari */
-}
-
-.image-scroll-container img {
-  flex-shrink: 0 !important;           /* Prevent images from shrinking */
-  width: 80vw;                         /* Responsive width (80% viewport width on mobile) */
-  max-width: 400px;                    /* Max width for larger mobiles/tablets */
-  height: auto;
-  border-radius: 8px;
-  scroll-snap-align: start;             /* Snap image to start */
-  user-select: none;
-  -webkit-user-drag: none;
-  display: block;
-}
-
-  .dots {
-    text-align: center;
-    margin-top: 1px;
-  }
-  .dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 6px;
-    background-color: #91c9f1;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-  }
-  .dot.active {
-    background-color: #225ae9;
-  }
-}
