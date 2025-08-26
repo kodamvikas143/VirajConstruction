@@ -252,8 +252,10 @@ footer {
 }
 
 /* Desktop Message */
-@media (min-width: 768px) {
-   
+@media (max-width: 300px) {
+  .mobile-only {
+    display: none;
+  }
   .desktop-message {
     display: flex;
     flex-direction: column;
@@ -272,47 +274,48 @@ footer {
   .desktop-message p {
     font-size: 1.2rem;
   }
-  .image-scroll-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-  gap: 10px;
-  scrollbar-width: none; /* hide scrollbar Firefox */
+   .image-scroll-container {
+  display: flex !important;              /* Flex layout for horizontal alignment */
+  overflow-x: auto !important;           /* Horizontal scroll enabled */
+  scroll-snap-type: x mandatory !important; /* Snap scroll on horizontal axis */
+  -webkit-overflow-scrolling: touch !important; /* Momentum scrolling on iOS */
+  width: 100% !important;                 /* Full width */
+  max-width: 400px !important;            /* Max width for container */
+  margin: 0 auto !important;              /* Center horizontally */
+  gap: 10px !important;                   /* Space between images */
+  scrollbar-width: none;                  /* Hide scrollbar - Firefox */
 }
 
 .image-scroll-container::-webkit-scrollbar {
-  display: none; /* hide scrollbar Chrome/Safari */
+  display: none;                         /* Hide scrollbar - Chrome/Safari */
 }
 
 .image-scroll-container img {
-  flex-shrink: 0;
-  width: 80vw;        /* 80% of viewport width on mobile */
-  max-width: 400px;   /* optional max width */
+  flex-shrink: 0 !important;           /* Prevent images from shrinking */
+  width: 80vw;                         /* Responsive width (80% viewport width on mobile) */
+  max-width: 400px;                    /* Max width for larger mobiles/tablets */
   height: auto;
   border-radius: 8px;
-  scroll-snap-align: start;
+  scroll-snap-align: start;             /* Snap image to start */
   user-select: none;
   -webkit-user-drag: none;
+  display: block;
 }
 
-/* Dots indicators */
-.dots {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.dot {
-  height: 10px;
-  width: 10px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s;
-}
-
-.dot.active {
-  background-color: #333;
-}
+  .dots {
+    text-align: center;
+    margin-top: 1px;
+  }
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #91c9f1;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  .dot.active {
+    background-color: #225ae9;
+  }
 }
