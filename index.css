@@ -273,48 +273,46 @@ footer {
     font-size: 1.2rem;
   }
   .image-scroll-container {
-  display: flex;              /* Flex layout for horizontal alignment */
-  overflow-x: auto;           /* Horizontal scroll enabled */
-  scroll-snap-type: x mandatory; /* Snap scroll on horizontal axis */
-  -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
-  width: 100%;                 
-  max-width: 400px;           
-  margin: 0 auto;             
-  gap: 10px;                  
-  scrollbar-width: none;      /* Hide scrollbar - Firefox */
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  gap: 10px;
+  scrollbar-width: none; /* hide scrollbar Firefox */
 }
 
 .image-scroll-container::-webkit-scrollbar {
-  display: none;              /* Hide scrollbar - Chrome/Safari */
+  display: none; /* hide scrollbar Chrome/Safari */
 }
 
 .image-scroll-container img {
-  flex-shrink: 0;            
-  width: 80vw;                /* Responsive width (80% of viewport) */
-  max-width: 400px;           
+  flex-shrink: 0;
+  width: 80vw;        /* 80% of viewport width on mobile */
+  max-width: 400px;   /* optional max width */
   height: auto;
   border-radius: 8px;
-  scroll-snap-align: start;   /* Snap image to start */
+  scroll-snap-align: start;
   user-select: none;
   -webkit-user-drag: none;
-  display: block;
 }
 
-/* Dots for carousel indicators (optional) */
+/* Dots indicators */
 .dots {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 10px;
 }
+
 .dot {
-  height: 12px;
-  width: 12px;
-  margin: 0 6px;
-  background-color: #91c9f1;
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
+
 .dot.active {
-  background-color: #225ae9;
+  background-color: #333;
 }
 }
