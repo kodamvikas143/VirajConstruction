@@ -183,7 +183,7 @@ h2 {
   text-align: center;
   padding: 2px;
   margin: 20px auto;
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 8px;
 }
 
@@ -197,8 +197,8 @@ h2 {
   scrollbar-width: none;
   overscroll-behavior-x: contain;
   touch-action: pan-x;
-  width: 90vw;
-  max-width: 400px;
+  width: 100vw;
+  max-width: 300px;
   border-radius: 8px;
 }
 
@@ -208,8 +208,8 @@ h2 {
 
 .image-scroll-container img {
   flex-shrink: 0;
-  width: 80vw;
-  max-width: 380px;
+  width: 100vw;
+  max-width: 280px;
   height: auto;
   border-radius: 8px;
   scroll-snap-align: start;
@@ -250,13 +250,13 @@ footer {
 }
 
 /* Responsive */
-@media(min-width: 768px) {
+@media(min-width: 700px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media(min-width: 1024px) {
+@media(min-width: 700px) {
   .services-grid {
     grid-template-columns: repeat(3, 1fr);
   }
