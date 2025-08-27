@@ -32,10 +32,12 @@ header {
 
 header .image-container {
   max-width: 80px;
+  text-align: center;
 }
 header .image-container img {
   max-width: 100%;
   height: auto;
+  
 }
 
 header .logo {
@@ -176,6 +178,17 @@ h2 {
 .btn.whatsapp { background:#08e325; }  /* Green */
 
 /* Image containers */
+.image-container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  padding: 0px;
+  margin: 2px auto;
+}
+.image-container img{
+   border-radius: 10px;  
+}
+
 .image-container1 {
   width: 100%;
   max-width: 400px;
@@ -188,6 +201,7 @@ h2 {
 }
 
 /* Carousel container */
+
 .image-scroll-container {
   display: flex;
   overflow-x: auto;
