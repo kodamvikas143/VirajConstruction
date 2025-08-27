@@ -23,6 +23,7 @@
         });
       }
     }
+    
     function updateTransform() {
       wrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
     }
