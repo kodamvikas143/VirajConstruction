@@ -120,6 +120,14 @@ h2 {
   display: inline-block;
   padding-bottom: 4px;
 }
+h4 {
+  color: rgb(69, 157, 192);
+  font-weight: 15;
+  margin-bottom: 1px;
+  display: inline-block;
+  padding-bottom: 1px;
+  font-size: x-small;
+}
 
 /* Grids */
 .services-grid {
@@ -259,18 +267,21 @@ h2 {
  .dots {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+   padding-bottom: 0.1px;
+   padding-top: 0.1px;
 }
 .dot {
-  width: 5px;
-  height: 5px;
-  background-color: gray;
+  width: 4px;
+  height: 4px;
+  background-color: rgb(69, 157, 192);
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
 }
 .dot.active {
-  background-color: rgb(211, 142, 142);
+  background-color:  rgb(69, 157, 192);
 }
   
 /* Footer */
