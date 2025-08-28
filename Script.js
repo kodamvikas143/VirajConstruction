@@ -1,12 +1,14 @@
- document.querySelectorAll('.project').forEach(project => {
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.project').forEach((project) => {
     const container = project.querySelector('.image-container1');
     const wrapper = container.querySelector('.image-scroll-container');
     const imagesCount = wrapper.children.length;
-    let startX = 0;
     let currentIndex = 0;
-    // Initialize dots if dots container exists
+    let startX = 0;
     const dotsContainer = project.querySelector('.dots');
     let dots = [];
+
+    // Create dots
     if (dotsContainer) {
       for (let i = 0; i < imagesCount; i++) {
         const dot = document.createElement('span');
@@ -15,38 +17,39 @@
         dot.dataset.index = i;
         dotsContainer.appendChild(dot);
         dots.push(dot);
-        // Dot click to jump to image
+
         dot.addEventListener('click', () => {
           currentIndex = i;
-          updateTransform();
-          updateDots();
+          update();
         });
       }
     }
-    
-    function updateTransform() {
+
+    function update() {
       wrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
     }
-    function updateDots() {
-      if (dots.length) {
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentIndex);
-        });
-      }
-    }
-    container.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-    });
-    container.addEventListener('touchend', e => {
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
+
+    function handleSwipe(diffX) {
       const swipeThreshold = 50;
       if (diffX > swipeThreshold && currentIndex < imagesCount - 1) {
         currentIndex++;
       } else if (diffX < -swipeThreshold && currentIndex > 0) {
         currentIndex--;
       }
-      updateTransform();
-      updateDots();
+      update();
+    }
+
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
     });
+
+    container.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      handleSwipe(diffX);
+    });
+
+    update();
   });
+});

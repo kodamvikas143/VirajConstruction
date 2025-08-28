@@ -256,23 +256,22 @@ h2 {
 }
 
  /* Dots container */
-  .dots {
-    text-align: center;
-    margin-top: 8px;
-  }
-  .dot {
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .dot.active {
-    background-color: #717171;
-  }
+ .dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: gray;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.dot.active {
+  background-color: black;
+}
   
 /* Footer */
 footer {
