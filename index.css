@@ -298,12 +298,14 @@ footer {
 @media(min-width: 700px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+    align-items: center;
   }
 }
 
 @media(min-width: 700px) {
   .services-grid {
     grid-template-columns: repeat(3, 1fr);
+    align-items: center;
   }
   .hero {
     height: 60vh;
