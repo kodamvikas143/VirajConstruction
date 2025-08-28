@@ -262,15 +262,15 @@ h2 {
   margin-top: 10px;
 }
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   background-color: gray;
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
 }
 .dot.active {
-  background-color: black;
+  background-color: rgb(211, 142, 142);
 }
   
 /* Footer */
