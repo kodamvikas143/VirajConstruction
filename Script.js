@@ -5,37 +5,38 @@
       navList.classList.toggle('active');
       navToggle.classList.toggle('active');
     });
-    document.body.addEventListener('click', function (e) {
-      if (!navList.contains(e.target) && !navToggle.contains(e.target)) {
-        navList.classList.remove('active');
-        navToggle.classList.remove('active');
-      }
-    }, true);
+   document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.project').forEach((project) => {
+    const wrapper = project.querySelector('.image-scroll-container');
+    const dotsContainer = project.querySelector('.dots');
+    const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.dot')) : [];
+    const images = Array.from(wrapper.querySelectorAll('img'));
 
-    // Carousel - horizontal scroll and dots
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.project').forEach((project) => {
-        const wrapper = project.querySelector('.image-scroll-container');
-        const dotsContainer = project.querySelector('.dots');
-        const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.dot')) : [];
-        const images = Array.from(wrapper.querySelectorAll('img'));
-
-        if (dots.length > 1) {
-          dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-              images[i].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-            });
-          });
-
-          wrapper.addEventListener('scroll', () => {
-            const scrollLeft = wrapper.scrollLeft;
-            const width = wrapper.offsetWidth;
-            let active = 0;
-            images.forEach((img, idx) => {
-              if (img.offsetLeft - scrollLeft < width / 2) active = idx;
-            });
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === active));
-          });
-        }
+    // On dot click, scroll to image
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        images[i].scrollIntoView({ behavior: 'smooth', inline: 'start' });
       });
     });
+
+    // On scroll, update active dot (sync with visible image)
+    wrapper.addEventListener('scroll', () => {
+      const wrapperRect = wrapper.getBoundingClientRect();
+      let closest = 0;
+      let minDiff = Infinity;
+      images.forEach((img, i) => {
+        const imgRect = img.getBoundingClientRect();
+        // Distance from image left edge to container left edge
+        const diff = Math.abs(imgRect.left - wrapperRect.left);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closest = i;
+        }
+      });
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === closest));
+    });
+
+    // Initialize active dot
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === 0));
+  });
+});
