@@ -5,6 +5,13 @@
       navList.classList.toggle('active');
       navToggle.classList.toggle('active');
     });
+    // Optional: Close dropdown if clicking outside (suggested for user experience)
+document.addEventListener('click', function (event) {
+  if (!navToggle.contains(event.target) && navList.contains(event.target)) {
+    navList.classList.remove('active');
+    navToggle.classList.remove('active');
+  }
+});
    document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.project').forEach((project) => {
     const wrapper = project.querySelector('.image-scroll-container');
