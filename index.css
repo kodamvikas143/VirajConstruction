@@ -21,6 +21,7 @@
       z-index: 1000;
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
+    
     .image-container {
       max-width: 55px;
       margin-right: 10px;
@@ -40,7 +41,7 @@
     nav ul {
       display: flex;
       list-style: none;
-      gap: 10px;
+      gap: 5px;
     }
     nav ul li a {
       color: white;
@@ -49,6 +50,7 @@
       padding: 7px 12px;
       border-radius: 8px;
       transition: background 0.25s, color 0.25s;
+    
     }
     nav ul li a:hover {
       background: #ff9800;
@@ -73,14 +75,19 @@
       transition: 0.2s;
       display: block;
     }
+    section {
+      position: relative;
+      scroll-margin-top: 70px;
+      scroll-margin-bottom: 10px;
+    }
     @media (max-width: 700px) {
       nav ul {
         position: absolute;
-        top: 48px;
-        right: 0;
+        top: 40px;
+        right: -20px;
         flex-direction: column;
         background: #004080;
-        width: 150px;
+        width: 100px;
         display: none;
       }
       nav ul.active {
